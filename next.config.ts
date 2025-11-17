@@ -2,17 +2,21 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-      async redirects() {
-        return [
-          {
-            source: '/index.html', // The incoming request path pattern
-            destination: '/', // The path to redirect to
-            permanent: true, // true for 308 (permanent), false for 307 (temporary)
-          },
-          // Add more redirect rules as needed
-        ];
-      },
 };
+
+  module.exports = {
+    ...nextConfig, // Spread existing config
+    async redirects() {
+      return [
+        {
+          source: '/index.html', // The incoming request path pattern
+          destination: '/',      // The path you want to route to (e.g., your homepage)
+          permanent: true,       // Use 308 for permanent redirect (cached by browsers/search engines)
+        },
+        // Add more redirects if needed
+      ];
+    },
+  };
 
 export default nextConfig;
 
